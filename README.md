@@ -36,6 +36,7 @@ export default ({ isDev }) => {
 		for (let integration of integrations) {
 			if (!integration.active){
 				console.log(`Skipping ${integration.name}`)
+				return;
 			}
 			const script_element = document.createElement('script')
 			script_element.text = integration.script
