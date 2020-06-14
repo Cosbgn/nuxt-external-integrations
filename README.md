@@ -34,14 +34,14 @@ export default ({ isDev }) => {
 
 	onLoad(() => {
 		for (let integration of integrations) {
-			if (!integration.active){
+			if (integration.active){
+				const script_element = document.createElement('script')
+				script_element.text = integration.script
+				const position = integration.head ? "head" : "body"
+				document[position].appendChild(script_element)
+			} else {
 				console.log(`Skipping ${integration.name}`)
-				return;
 			}
-			const script_element = document.createElement('script')
-			script_element.text = integration.script
-			const position = integration.head ? "head" : "body"
-			document[position].appendChild(script_element)
 		}
 	})
 }
