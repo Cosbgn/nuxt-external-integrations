@@ -28,7 +28,6 @@ export default ({ isDev }) => {
 			name:"Intercom Live Chat",
 			description: "Live chat widget to chat with users",
 			active:!isDev,
-			position:"body",
 			script: `(function(d,h,w)...`
 		}
 	]
@@ -40,7 +39,7 @@ export default ({ isDev }) => {
 			}
 			const script_element = document.createElement('script')
 			script_element.text = integration.script
-			const position = integration.position || "body"
+			const position = integration.head ? "head" : "body"
 			document[position].appendChild(script_element)
 		}
 	})
@@ -61,6 +60,6 @@ export default ({ isDev }) => {
  
  You can use the `active` key to activate integrations only on your live server or compleately disable integrations (setting `active` to `false`).
  
- You can use the `position` key to add integrations either to the `head` or to the `body`.
+ By default the integrations are added to the `body`. If you need them in the `head`, simply add `head:true` to the integration.
  
  This will keep your code clean and allow you to add integrations easily to your nuxt app.
